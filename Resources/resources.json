@@ -37,6 +37,9 @@
 					"value": false,
 					"gpio": 9
 				}
+			},
+			"lcd": {
+				"value":"hello"
 			}
 		}
 	}
