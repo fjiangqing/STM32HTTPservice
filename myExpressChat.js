@@ -3,11 +3,13 @@
 
 var express = require('express');
 var ejs = require('ejs');
-var resources = require('./resources/resources');
+var resources = require('./Resources/resources');
 var qs = require('querystring')
 var app = express.createServer();
 var net = require('net');
 
+
+var con;
 //使用ejs模板
 app.set("view engine", "ejs");
 
@@ -94,6 +96,7 @@ app.post('/lcd', function (req, res) {
 		} else {
 			resources.STM32.actuators.lcd.value = qs.parse(body).lcd;
 			res.send('lcd:' + resources.STM32.actuators.lcd.value);
+			con.write('lcd:' + resources.STM32.actuators.lcd.value);
 		}
 	});
 	console.log('/lcd method = POST');
@@ -101,12 +104,14 @@ app.post('/lcd', function (req, res) {
 
 app.listen(3000);
 
+
 var server = net.createServer(function (conn) {
 	
 	conn.write("lcd:" + resources.STM32.actuators.lcd.value);
+	con = conn;
 	//设定编码
 	conn.setEncoding('utf8');	
-	conn.end();
+	//conn.end();
 });
 
 //监控3001端口

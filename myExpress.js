@@ -3,7 +3,7 @@
 
 var express = require('express');
 var ejs = require('ejs');
-var resources = require('./resources/resources');
+var resources = require('./Resources/resources');
 var qs = require('querystring')
 var app = express.createServer();
 
