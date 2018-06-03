@@ -109,6 +109,7 @@ var server = net.createServer(function (conn) {
 	
 	conn.write("lcd:" + resources.STM32.actuators.lcd.value);
 	con = conn;
+	console.log("conn STM32\r\n");
 	//设定编码
 	conn.setEncoding('utf8');	
 	//conn.end();
